@@ -1,28 +1,44 @@
-const pool = require('./db');
+const connection = require('./db');
 
 class UserModel {
 
-    static insertNewUser(email, password, firstName, lastName, phone, address) {
-        // This is for user signup
-        return pool.query("INSERT INTO users (email, password, firstName, lastName, phone, address) VALUES             ($1, $2, $3, $4, $5, $6) RETURNING id", [email, password, firstName, lastName, phone, address])          
-        .then(id => id)
-        .catch(e => e);
+    // This is for user signup
+    static insertNewUser(email, password, firstName, lastName, phone, address, token) {
+
+        connection.connect();
+        return connection.query("INSERT INTO users (email, password, first_name, last_name, phone, address, token) VALUES (?, ?, ?, ?, ?, ?, ?)", [email, password, firstName, lastName, phone, address, token], (err, results) => {
+            connection.end();
+            console.log("here");
+            if (err) return err
+            else return results;
+        });
     }
     //This is for user login
     static getUserById(id) {
-        return pool.query('SELECT * FROM users WHERE id = $1', [id])
-       // .then(user => {return user})
-        .then(user => user)
-        .catch(e => e);
+
+        connection.connect();
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM users WHERE id = ?", [id], (err, results) => {
+                connection.end();
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+
     } 
-
     // Get user by email
-    static getUserByEmail(email){
-        return pool.query('SELECT * FROM users WHERE email = $1', [email])
-        .then(user => user)
-        .catch(e => e);
-    }
+    static getUserByEmail(email) {
 
+        connection.connect();
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM users WHERE email = ?", [email], (err, results) => {
+                connection.end();
+                if (err) reject(err);
+                else resolve(results);
+            });
+        })
+    }
 }
+
 
 module.exports = UserModel;

@@ -1,10 +1,6 @@
-const { Pool, Client } = require('pg');
-const config = require('./config/config');
+const config = require('../config/config');
+const mysql = require('mysql');
 
-const pool = new Pool({
-    user: `${config.username}`,
-    database: `${config.database}`,
-    password: `${config.password}`,
-  });
+const connection = mysql.createConnection(config);
 
-  module.exports = pool;
+module.exports = connection;
