@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcrypt');
 const randToken = require('rand-token');
 const UserModel = require('../models/UserModel');
