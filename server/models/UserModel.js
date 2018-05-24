@@ -4,12 +4,12 @@ class UserModel {
 
     // This is for user signup
     static insertNewUser(email, password, firstName, lastName, phone, address, token) {
-
+        console.log(email, password)
         connection.connect();
         return connection.query("INSERT INTO users (email, password, first_name, last_name, phone, address, token) VALUES (?, ?, ?, ?, ?, ?, ?)", [email, password, firstName, lastName, phone, address, token], (err, results) => {
             connection.end();
             console.log("here");
-            if (err) return err
+            if (err) {console.log(err)}
             else return results;
         });
     }
@@ -32,6 +32,18 @@ class UserModel {
         connection.connect();
         return new Promise((resolve, reject) => {
             connection.query("SELECT * FROM users WHERE email = ?", [email], (err, results) => {
+                connection.end();
+                if (err) reject(err);
+                else resolve(results);
+            });
+        })
+    }
+
+    static updateToken(email, token) {
+
+        connection.connect();
+        return new Promise((resolve, reject) => {
+            connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], (err, results) => {
                 connection.end();
                 if (err) reject(err);
                 else resolve(results);
