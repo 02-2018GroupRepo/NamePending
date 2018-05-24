@@ -28,6 +28,29 @@ router.post('/signup', (req,res)=>{
   });
 })
 
+router.post('/login', (req, res)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+  const token = randToken.uid(60);
+
+  UserModel.getUserByEmail(email).then(results =>{
+    bcrypt.compare(password, results[0].password, (error, result)=>{
+      if(result){
+        UserModel.updateToken(email, token).then((user)=>{
+          res.json({
+            msg: "login success",
+            token: user.token
+          })
+        });
+      }
+      else{
+        res.status(304);
+      }
+    })
+  });
+})
+  
+
 
 
 
