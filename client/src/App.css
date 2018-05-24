@@ -1,3 +1,10 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: helvetica-neue,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -8,10 +15,12 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #fa6204;
+  display: flex;
+  height: 80px;
   padding: 20px;
   color: white;
+  justify-content: space-between;
 }
 
 .App-title {
@@ -22,7 +31,66 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.map-container {
+  height: 100%;
+  width: 75%;
+  float: right;
+}
+
+#map {
+  height: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+}
+
+.navbar li {
+  display: block;
+}
+
+.navbar li a {
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+}
+
+.title {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.record-col {
+  float: left;
+  max-height: 800px;
+  overflow-y: scroll;
+  width: 25%;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-orange {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  border: 2px solid #fa6204;
+  font-size: 1.1rem;
+  background-color: #fa6204;
+  color: white;
+  font-weight: 700;
 }
