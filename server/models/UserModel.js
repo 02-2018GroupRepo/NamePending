@@ -12,10 +12,11 @@ class UserModel {
         });
     }
     //This is for user login
-    static getUserById(id) {
+    static getUserByToken(token) {
 
         return new Promise((resolve, reject) => {
-            connection.query("SELECT * FROM users WHERE id = ?", [id], (err, results) => {
+            connection.query("SELECT * FROM users WHERE token = ?", [token], (err, results) => {
+                console.log("Promise")
                 if (err) reject(err);
                 else resolve(results);
             });
@@ -43,7 +44,16 @@ class UserModel {
             });
         })
     }
-}
+
+     static insertFavorite(wid, uid) {
+         return new Promise((resolve, reject) => {
+             connection.query("INSERT INTO favorites (workshopId, userId) VALUES (?, ?)", [wid, uid], (err, results) => {
+                 if (err) reject(err);
+                 else resolve(results);
+                });
+            })
+        }
+    }
 
 
 module.exports = UserModel;

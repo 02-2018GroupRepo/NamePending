@@ -47,8 +47,31 @@ router.post('/login', (req, res)=>{
         res.status(304);
       }
     })
+});
+  })
+
+router.post('/addToCalendar', (req, res)=>{
+  const workShopId = req.body.workShopId;
+  const userToken = req.body.token;
+
+  UserModel.getUserByToken(userToken).then(results =>{
+    const userID = 1;
+    console.log(results)
+    if (results.length > 0){
+      UserModel.insertFavorite(workShopId, userID)
+               .then((results) => {
+                 res.json({
+                   msg: "WorkShopAdded"
+                  })
+                })
+    } else {
+      res.json({
+        msg: "Workshop not added."
+      })
+    }
   });
-})
+
+  });
   
 
 
