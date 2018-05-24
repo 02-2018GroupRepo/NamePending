@@ -4,12 +4,12 @@ class UserModel {
 
     // This is for user signup
     static insertNewUser(email, password, firstName, lastName, phone, address, token) {
-
+        console.log(email, password)
         connection.connect();
         return connection.query("INSERT INTO users (email, password, first_name, last_name, phone, address, token) VALUES (?, ?, ?, ?, ?, ?, ?)", [email, password, firstName, lastName, phone, address, token], (err, results) => {
             connection.end();
             console.log("here");
-            if (err) return err
+            if (err) {console.log(err)}
             else return results;
         });
     }

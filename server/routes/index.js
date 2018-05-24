@@ -5,25 +5,30 @@ const randToken = require('rand-token');
 const UserModel = require('../models/UserModel');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-})
-.post('/', (req, res, next) => {
-  email = req.body.email;
-  password = req.body.password;
-  firstName = req.body.firstName;
-  lastName = req.body.lastName;
-  phone = req.body.phone;
-  address = req.body.address;
-  let token = randToken.uid(60);
-  
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
-      UserModel.insertNewUser(email, hash, firstName, lastName, phone, address, token);      
-      res.cookie('token', token);
-      res.end();
+router.post('/signup', (req,res)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const phone = req.body.phone;
+  const address = req.body.address;
+  const token = randToken.uid(60);
+
+  bcrypt.genSalt(10, (error, salt)=>{
+    if(error){throw error;}
+    bcrypt.hash(password, salt, (error,hash)=>{
+      if(error){throw error;}
+      UserModel.insertNewUser(email, hash, firstName, lastName, phone, address, token);
+
+      res.json({
+        token: token,
+        msg: "signupSuccess"
+      });
     });
-});
-});
+  });
+})
+
+
+
 
 module.exports = router;
