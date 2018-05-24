@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Login extends Component{
 
@@ -6,17 +7,18 @@ class Login extends Component{
     event.preventDefault();
 
     const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("pwd").value;
 
     const loginRequest = axios({
       method: "POST",
-      url: "http://localhost:3030/login",
+      url: "http://localhost:3001/login",
       data: {
         email,
         password
       }
     });
     loginRequest.then((loginData)=>{
+      console.log(loginData)
       if(loginData.data.msg === "Login Success"){
 				localStorage.setItem('token', loginData.data.token)
 				this.props.history.push('/')

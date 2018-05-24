@@ -36,10 +36,10 @@ router.post('/login', (req, res)=>{
   UserModel.getUserByEmail(email).then(results =>{
     bcrypt.compare(password, results[0].password, (error, result)=>{
       if(result){
-        UserModel.updateToken(email, token).then(()=>{
+        UserModel.updateToken(email, token).then((user)=>{
           res.json({
             msg: "login success",
-            token
+            token: user.token
           })
         });
         
