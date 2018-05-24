@@ -7,10 +7,10 @@ import axios from 'axios';
 import Login from './components/Login';
 import storeData from './data';
 import MapContainer from './components/MapContainer';
+import $ from 'jquery';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
 const useLocalData = true;
-
 
 class App extends Component {
 
@@ -46,17 +46,17 @@ class App extends Component {
     
     _markerClickHandler(storeId) {
 
-      let temp = this.state.storeData[0];
-    
-      if (temp) {
-        let selectedStoreIndex = this.state.storeData.findIndex(store => storeId === store.storeNumber);
-        let data = this.state.storeData;
-        data[0] = data[selectedStoreIndex];
-        data[selectedStoreIndex] = temp;
-        this.setState({
-          storeData: data
+      try {
+        document.querySelector('.shadow').style.boxShadow = "";
+        document.querySelector('.shadow').classList.remove('shadow');
+      } catch (e) {
+
+      }
+      document.querySelector(`.store${storeId}`).scrollIntoView({ 
+          behavior: 'smooth' 
         });
-      }    
+      document.querySelector(`.store${storeId}`).classList.add('shadow');
+      document.querySelector(`.store${storeId}`).style.boxShadow = "0 7px 35px -2px rgba(0,0,0,.53)";
     }
 
   render() {
