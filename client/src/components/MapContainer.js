@@ -6,8 +6,6 @@ import RecordColumn from './RecordColumn';
 
 const MapContainer = (props) => {
 
-    console.log(props);
-
     return (
         <React.Fragment>
         <div className="map-container">

@@ -5,8 +5,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 const renderMarkers = (storeRecords, clickHandler) => {
-  if (storeRecords) return storeRecords.map(store => 
-  <Marker key={store.id} position={{ lat: Number(store.lat), lng: Number(store.lng) }} onClick={() => clickHandler(store.id)} />);
+  if (storeRecords) return storeRecords.map(store => <Marker key={store.id} position={{ lat: Number(store.lat), lng: Number(store.lng) }} onClick={() => clickHandler(store.storeNumber)} />);
 }
 
 const MyMapComponent = compose(

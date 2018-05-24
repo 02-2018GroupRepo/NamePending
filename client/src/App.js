@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(storeData);
     if (!useLocalData) {
       axios.get(`${url}/api/stores`)
            .then(res => res.data)
@@ -47,19 +46,17 @@ class App extends Component {
     
     _markerClickHandler(storeId) {
 
-      // let temp = this.state.storeData[0];
+      let temp = this.state.storeData[0];
     
-      // if (temp) {
-      //   let selectedStoreIndex = this.state.storeData.find(store => storeId === store.storeNumber);
-      //   let data = this.state.storeData;
-      //   data[0] = data[selectedStoreIndex];
-      //   data[selectedStoreIndex] = temp;
-      //   console.log(data[0]);
-      //   console.log(data[selectedStoreIndex]);
-      //   this.setState({
-      //     storeData: data
-      //   });
-      // }    
+      if (temp) {
+        let selectedStoreIndex = this.state.storeData.findIndex(store => storeId === store.storeNumber);
+        let data = this.state.storeData;
+        data[0] = data[selectedStoreIndex];
+        data[selectedStoreIndex] = temp;
+        this.setState({
+          storeData: data
+        });
+      }    
     }
 
   render() {
