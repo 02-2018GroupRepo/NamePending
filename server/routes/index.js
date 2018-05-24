@@ -42,7 +42,6 @@ router.post('/login', (req, res)=>{
             token: user.token
           })
         });
-        
       }
       else{
         res.status(304);
@@ -76,6 +75,7 @@ router.post('/addToCalendar', (req, res)=>{
   })
   
   
+  });
 })
   
 
