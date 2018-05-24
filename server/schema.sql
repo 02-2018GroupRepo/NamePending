@@ -5,7 +5,8 @@ CREATE TABLE users (
  phone varchar(255),
  first_name varchar(255),
  last_name varchar(255),
- address varchar(255)
+ address varchar(255),
+ token varchar(255)
 ); 
 CREATE TABLE workshop(
  id Integer,   
