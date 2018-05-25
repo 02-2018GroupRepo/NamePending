@@ -7,6 +7,7 @@ import axios from 'axios';
 import Login from './components/Login';
 import WorkShop from './components/WorkShop';
 import storeData from './data';
+import workShopData from './workshopData';
 import MapContainer from './components/MapContainer';
 import WorkShopContainer from './components/WorkshopContainer';
 import NavigationBar from './components/NavigationBar';
@@ -22,7 +23,8 @@ class App extends Component {
       storeData: useLocalData ? storeData 
                               : [],
       markerSelectionNumber : null,
-      workshopData: [],                              
+      workshopData: useLocalData ? storeData 
+                                 : [],                              
       }
   
     this._markerClickHandler = this._markerClickHandler.bind(this);  
@@ -44,21 +46,22 @@ class App extends Component {
                 })
               }
             )
-        }
-        axios.get(`${url}/api/workshops`)
-        .then(res => res.data)
-        .then(
-          (workshopRecords) => {
-            this.setState({
-              workshopData: workshopRecords
-             });
-           },
-           (error) => {
-             this.setState({
-               error
-             })
-           }
-         )     
+
+            axios.get(`${url}/api/workshops`)
+            .then(res => res.data)
+            .then(
+              (workshopRecords) => {
+                this.setState({
+                  workshopData: workshopRecords
+                 });
+               },
+               (error) => {
+                 this.setState({
+                   error
+                 })
+               }
+             )        
+      }    
       }
       
     _markerClickHandler(storeId) {
@@ -83,9 +86,6 @@ class App extends Component {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
-        {/* <Route path='/WorkShop' component={(props)=>(
-        	<WorkShop workShop = {workshop} />
-        )} /> */}
       </div>
     );
   }
