@@ -8,6 +8,7 @@ import Login from './components/Login';
 import WorkShop from './components/WorkShop';
 import storeData from './data';
 import MapContainer from './components/MapContainer';
+import WorkShopContainer from './components/WorkshopContainer';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
 const useLocalData = true;
@@ -29,7 +30,8 @@ class App extends Component {
     this.state = {
       storeData: useLocalData ? storeData 
                               : [],
-      markerSelectionNumber : null                              
+      markerSelectionNumber : null,
+      workshopData: [],                              
       }
   
     this._markerClickHandler = this._markerClickHandler.bind(this);  
@@ -52,10 +54,23 @@ class App extends Component {
               }
             )
         }
+        axios.get(`${url}/api/workshops`)
+        .then(res => res.data)
+        .then(
+          (workshopRecords) => {
+            this.setState({
+              workshopData: workshopRecords
+             });
+           },
+           (error) => {
+             this.setState({
+               error
+             })
+           }
+         )     
       }
       
     _markerClickHandler(storeId) {
-
         try {
           document.querySelector('.shadow').style.boxShadow = "";
           document.querySelector('.shadow').classList.remove('shadow');
@@ -75,9 +90,10 @@ class App extends Component {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route exact path="/" component={() => <MapContainer storeRecords={this.state.storeData} markerClickHandler={this._markerClickHandler} />}  />
-        <Route path='/WorkShop' component={(props)=>(
+        <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
+        {/* <Route path='/WorkShop' component={(props)=>(
         	<WorkShop workShop = {workshop} />
-        )} />
+        )} /> */}
       </div>
     );
   }

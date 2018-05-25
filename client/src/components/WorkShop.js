@@ -41,7 +41,7 @@ class WorkShop extends Component{
 
 render(){
 	const workShop = this.props.workShop; 
-
+	console.log("here");
 	return(
        <div className ="col-sm-12">
            <div className ="title"><h1>{workShop.name}</h1></div>
