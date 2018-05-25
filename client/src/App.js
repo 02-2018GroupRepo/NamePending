@@ -6,6 +6,11 @@ import Signup from './Signup';
 import axios from 'axios';
 import Login from './components/Login';
 import WorkShop from './components/WorkShop';
+import storeData from './data';
+import MapContainer from './components/MapContainer';
+const url = "http://localhost:3001";
+/* Set to true if using data from local json file  */
+const useLocalData = true;
 
 const workshop = {
 		name: "Bird House",
