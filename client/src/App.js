@@ -23,7 +23,7 @@ class App extends Component {
       storeData: useLocalData ? storeData 
                               : [],
       markerSelectionNumber : null,
-      workshopData: useLocalData ? storeData 
+      workshopData: useLocalData ? workShopData 
                                  : [],                              
       }
   
