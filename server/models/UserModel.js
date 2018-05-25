@@ -38,7 +38,6 @@ class UserModel {
 
         return new Promise((resolve, reject) => {
             connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], (err, results) => {
-                console.log('Hey')
                 if (err) reject(err);
                 else resolve(results);
             });

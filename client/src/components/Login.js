@@ -3,6 +3,11 @@ import axios from 'axios';
 
 class Login extends Component{
 
+  constructor(props) {
+    super(props);
+    this.handlelogin = this.handlelogin.bind(this);
+  }
+
   handlelogin(event){
     event.preventDefault();
 
@@ -17,11 +22,11 @@ class Login extends Component{
         password
       }
     });
+
     loginRequest.then((loginData)=>{
-      console.log(loginData)
-      if(loginData.data.msg === "Login Success"){
-				localStorage.setItem('token', loginData.data.token)
-				this.props.history.push('/')
+      if(loginData.data.msg === "login success"){
+        localStorage.setItem('token', loginData.data.token);
+				this.props.history.push('/');
 			}
 
     });

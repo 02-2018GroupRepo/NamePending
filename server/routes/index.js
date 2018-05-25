@@ -39,7 +39,7 @@ router.post('/login', (req, res)=>{
         UserModel.updateToken(email, token).then((user)=>{
           res.json({
             msg: "login success",
-            token: user.token
+            token: token
           })
         });
       }
