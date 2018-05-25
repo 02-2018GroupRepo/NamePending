@@ -55,8 +55,7 @@ router.post('/addToCalendar', (req, res)=>{
   const userToken = req.body.token;
 
   UserModel.getUserByToken(userToken).then(results =>{
-    const userID = 1;
-    console.log(results)
+    const userID = results[0].id;
     if (results.length > 0){
       UserModel.insertFavorite(workShopId, userID)
                .then((results) => {
