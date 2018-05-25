@@ -9,7 +9,7 @@ CREATE TABLE users (
  token varchar(255)
 ); 
 CREATE TABLE workshop(
- id Integer,   
+ id SERIAL,   
  store_id Integer,
  description varchar(255),
  start_time date,
@@ -26,3 +26,11 @@ CREATE TABLE stores(
  lat Integer,
  lng Integer
 ); 
+
+CREATE TABLE favorites(
+ id SERIAL,
+ workshopId Integer,
+ userId Integer
+ );
+ 
+
