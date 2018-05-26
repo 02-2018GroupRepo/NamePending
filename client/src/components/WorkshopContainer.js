@@ -7,6 +7,7 @@ class WorkShopContainer extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.generateWorkShops = this.generateWorkShops.bind(this);
     }
 

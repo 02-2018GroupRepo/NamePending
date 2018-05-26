@@ -6,7 +6,6 @@ const preventEventDefault = (event) => {
 }
 
 const Record = (props) => {
-  console.log(props);
   const recordCards = props.records.map(record => { 
     return (<a href="/" onClick={preventEventDefault} className={`ui card store${record.store_id}`} id="card" key={record.store_id} style={{margin: "10px auto", textDecoration: "none", color: "black", width: "95%"}}>
                 <h3 style={{textAlign: "left", paddingLeft: "14px"}}>{`${record.name} #${record.store_id}`}</h3>

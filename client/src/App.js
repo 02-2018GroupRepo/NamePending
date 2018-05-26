@@ -14,7 +14,7 @@ import NavigationBar from './components/NavigationBar';
 import MyWorkshops from './components/MyWorkShops';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
-const useLocalData = true;
+const useLocalData = false;
 
 class App extends Component {
 
@@ -25,7 +25,8 @@ class App extends Component {
                               : [],
       markerSelectionNumber : null,
       workshopData: useLocalData ? workShopData 
-                                 : [],                              
+                                 : [],
+      favorites: []                                                         
       }
   
     this._markerClickHandler = this._markerClickHandler.bind(this);  
@@ -61,8 +62,24 @@ class App extends Component {
                    error
                  })
                }
-             )        
-      }    
+             )
+      }
+      axios.post(`${url}/api/favorites`, {
+        token: localStorage.getItem('token')
+    })
+         .then(res => res.data)
+         .then(
+           (favorites) => {
+             this.setState({
+                 favorites: favorites
+              });
+            },
+            (error) => {
+              this.setState({
+                error
+              })
+            }
+          )    
       }
       
     _markerClickHandler(storeId) {
@@ -87,7 +104,7 @@ class App extends Component {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
-        <Route path="/myworkshops" component={MyWorkshops}/>
+        <Route path="/myworkshops" component={(props) => <MyWorkshops props={props} workShopRecords={this.state.favorites} />}/>
       </div>
     );
   }

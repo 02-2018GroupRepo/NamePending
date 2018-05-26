@@ -15,7 +15,6 @@ class WorkShop extends Component{
 	
 
 	register(){
-		console.log("Houston we have a problem")
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
