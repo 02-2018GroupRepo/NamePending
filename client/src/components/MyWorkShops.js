@@ -42,6 +42,7 @@ class MyWorkShops extends Component {
 
         let storeNumber = workshopRecords.store_id;
         if (workshopRecords.length !== 0) {
+            workshopRecords.sort((a, b) => a.date.match(/\d/)[0] - b.date.match(/\d/)[0]);
             return workshopRecords.map(workshop => <Favorite workShop = {workshop} /> );
         } else {
             return <h1>Loading</h1>;

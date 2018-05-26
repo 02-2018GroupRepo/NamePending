@@ -12,7 +12,6 @@ class WorkShop extends Component {
 	}
 
 	
-
 	register(){
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
@@ -51,8 +50,9 @@ render() {
                         <p>{workShop.description}</p>
                 </div>
                    <div className="workshop-col-4">
-                            <h2>{workShop.date}</h2>
-                            <h3>{workShop.time}</h3>
+                            <div className="favorite-date">{workShop.date}</div>
+                            <div className="favorite-time">{workShop.time}</div>
+                            <div className="favorite-time">{workShop.address}</div>
                             </div>
 
               </div>
