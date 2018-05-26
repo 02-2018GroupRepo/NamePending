@@ -14,7 +14,7 @@ import NavigationBar from './components/NavigationBar';
 import MyWorkshops from './components/MyWorkShops';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
-const useLocalData = false;
+const useLocalData = true;
 
 class App extends Component {
 
