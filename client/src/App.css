@@ -94,3 +94,43 @@ html, body {
   color: white;
   font-weight: 700;
 }
+
+.workshop-header {
+  font-size: 1.5em;
+  padding-left: 25px;
+  padding-bottom: 5px;
+  padding-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.workshop-container {
+  max-height: 291px;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 15px;
+}
+
+.workshop-col-8 {
+  width: 75%;
+  display: flex;
+}
+
+.workshop-details {
+  display: flex;
+}
+
+.workshop-details p {
+  padding-left: 15px;
+  height: 100%;
+}
+
+.workshop-img {
+  width: 302px;
+  float: left;
+  margin-left: 25px;
+}
+
+.workshop-img img {
+  width: 302px;
+  height: 217px;
+}

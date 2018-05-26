@@ -24,6 +24,7 @@ class Login extends Component{
     });
 
     loginRequest.then((loginData)=>{
+      
       if(loginData.data.msg === "login success"){
         localStorage.setItem('token', loginData.data.token);
 				this.props.history.push('/');
@@ -32,7 +33,7 @@ class Login extends Component{
     });
   }
 
-  render(){
+  render() {
     return(
       <form onSubmit={this.handlelogin}>
 	      <div className="form-group">

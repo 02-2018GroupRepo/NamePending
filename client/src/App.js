@@ -11,9 +11,10 @@ import workShopData from './workshopData';
 import MapContainer from './components/MapContainer';
 import WorkShopContainer from './components/WorkshopContainer';
 import NavigationBar from './components/NavigationBar';
+import MyWorkshops from './components/MyWorkShops';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
-const useLocalData = true;
+const useLocalData = false;
 
 class App extends Component {
 
@@ -86,6 +87,7 @@ class App extends Component {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
+        <Route path="/myworkshops" component={MyWorkshops}/>
       </div>
     );
   }

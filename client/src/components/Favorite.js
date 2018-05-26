@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-
-class WorkShop extends Component{
+class WorkShop extends Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -15,7 +14,6 @@ class WorkShop extends Component{
 	
 
 	register(){
-		console.log("Houston we have a problem")
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
@@ -40,20 +38,25 @@ class WorkShop extends Component{
 
 
 render() {
-	const workShop = this.props.workShop; 
+    const workShop = this.props.workShop; 
+    console.log(workShop)
 	return(
-       <div className ="col-sm-12">
-           <div className ="title"><h1>{workShop.name}</h1></div>
-              <div className="photo">
-                   <img src = {workShop.photo_url} /> </div>
-                   <div  className="description"><p>{workShop.description}</p></div>
-                   <div className="timeAndButton">
+       <div className ="workshop-container">
+           <div className ="workshop-header">{workShop.name}</div>
+              <div className="workshop-details">
+                <div className="workshop-col-8">
+                <div className="workshop-img">
+                    <img src = {workShop.photo_url} />
+                    </div> 
+                        <p>{workShop.description}</p>
+                </div>
+                   <div className="workshop-col-4">
                             <h2>{workShop.date}</h2>
                             <h3>{workShop.time}</h3>
-                           <button className="registerBtn"  display={this.state.buttonClass} onClick={this.register}>Register</button>
                             </div>
 
               </div>
+            </div>
 
 
 		)
