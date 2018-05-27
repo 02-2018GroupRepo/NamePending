@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class Signup extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
+		console.log(props);
 		this.handleSignup = this.handleSignup.bind(this);
 	}
 
@@ -17,8 +18,6 @@ class Signup extends Component{
 		const lastName = document.getElementById('lastName').value;
 		const phone = document.getElementById('phone').value;
 		const address = document.getElementById('address').value;
-
-		console.log(password, email);
 
 		const signupRequest = axios({
 			method: "POST",
@@ -34,10 +33,10 @@ class Signup extends Component{
 		});
 
 		signupRequest.then((signupData)=>{
-			console.log(signupData)
 			if(signupData.data.msg === "signupSuccess"){
-				localStorage.setItem('token', signupData.data.token)
-				this.props.history.push('/')
+				localStorage.setItem('token', signupData.data.token);
+				this.props._isAuthHandler();
+				this.props.props.history.push('/')
 			}
 		})
 

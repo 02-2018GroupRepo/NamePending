@@ -27,7 +27,8 @@ class Login extends Component{
       
       if(loginData.data.msg === "login success"){
         localStorage.setItem('token', loginData.data.token);
-				this.props.history.push('/');
+        this.props._isAuthHandler();
+				this.props.props.history.push('/');
 			}
 
     });

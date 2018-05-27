@@ -22,7 +22,7 @@ class Header extends Component{
 						<p className="textStyle">The Workshops of HD</p>
 					</div>
 					<div className="col-md-offset-1 col-md-5 navAndSearch123">
-						<NavigationBar />
+						<NavigationBar isAuth={this.props.isAuth} _isAuthHandler={this.props._isAuthHandler} />
 					</div>
 				</div>
 				<div className="row orangeBar123">
