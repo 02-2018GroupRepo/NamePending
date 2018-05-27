@@ -10,7 +10,9 @@ import storeData from './data';
 import workShopData from './workshopData';
 import MapContainer from './components/MapContainer';
 import WorkShopContainer from './components/WorkshopContainer';
+import MyWorkshop from './components/MyWorkshop';
 import NavigationBar from './components/NavigationBar';
+import Home from './components/Header';
 import MyWorkshops from './components/MyWorkShops';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
@@ -83,8 +85,8 @@ class App extends Component {
 	
   render() {
     return (
-      <div>
-        <Route path="/" component={NavigationBar} />
+      <div className="container">
+        <Route path="/" component={Home}/>
         <Route exact path="/" component={() => <MapContainer storeRecords={this.state.storeData} markerClickHandler={this._markerClickHandler} />}  />
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />

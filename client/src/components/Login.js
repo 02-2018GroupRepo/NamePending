@@ -35,6 +35,16 @@ class Login extends Component{
 
   render() {
     return(
+      <div className="col-sm-offset-3 col-sm-6">
+      <div className="signUpText">
+      Login!
+      Login!
+      Login!
+      Login!
+      Login!
+      Login!
+      Login!
+      </div>
       <form onSubmit={this.handlelogin}>
 	      <div className="form-group">
 	        <label htmlFor="email">Email address:</label>
@@ -47,6 +57,7 @@ class Login extends Component{
 	      
 	      <button type="submit" className="btn btn-default">Submit</button>
 	    </form>
+      </div>
     )
   }
 }

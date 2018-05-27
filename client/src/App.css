@@ -69,6 +69,16 @@ html, body {
   font-weight: 700;
 }
 
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+
+.signUpText{
+  margin: 10px 0px;
+
 .workshop-header {
   font-size: 1.5em;
   padding-left: 25px;

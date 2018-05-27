@@ -4,18 +4,14 @@ import {Link} from 'react-router-dom';
 class NavigationBar extends Component{
   render(){
     return(
-      <nav className="navbar navbar-inverse">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">Home Depot</Link>
-          </div>
-          <ul className="nav navbar-nav">
-            <li><Link to="/signup">Sign Up</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/myworkshops">MyWorkShops</Link></li>
-          </ul>
+      <div className="navLinks" id="THD">
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/myworkshops">My Workshops</Link>
         </div>
-      </nav>
+      </div>
     ) 
   }
 }

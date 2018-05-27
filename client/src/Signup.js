@@ -45,7 +45,14 @@ class Signup extends Component{
 
 	render(){
 		return(
-
+			<div className="col-sm-offset-3 col-sm-6">
+			<div className="signUpText">
+				Sign up for a HDW account so you can register for a workshop today!
+				Sign up for a HDW account so you can register for a workshop today!
+				Sign up for a HDW account so you can register for a workshop today!
+				Sign up for a HDW account so you can register for a workshop today!
+				Sign up for a HDW account so you can register for a workshop today!
+			</div>
 			<form onSubmit={this.handleSignup}>
 				<div className = "form-group">
 					<label htmlFor="email">Email Address:</label>
@@ -73,7 +80,7 @@ class Signup extends Component{
 	 			</div>
 	 			<button type="submit" className="btn btn-default">Sign Up</button>
 			</form>
-
+			</div>
 		)
 	}
 }
