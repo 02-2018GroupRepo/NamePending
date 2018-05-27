@@ -27,7 +27,8 @@ class App extends Component {
                               : [],
       workshopData: useLocalData ? workShopData 
                                  : [],
-      favorites: []                                                      
+      favorites: [],
+      isAuth: false                                                      
       }
   }
 
@@ -79,15 +80,24 @@ class App extends Component {
               })
             }
           )    
-      }  
+      }
+
+
+  _isAuthHandler = (auth=true) => {
+    this.setState({
+      isAuth: auth
+    })
+  }    
+      
+      
       
   render() {
     return (
       <div className="container">
-        <Route path="/" component={Home}/>
+        <Route path="/" component={(props) => <Home props={props} isAuth={this.state.isAuth} _isAuthHandler={this._isAuthHandler} />}/>
         <Route exact path="/" component={() => <MapContainer storeRecords={this.state.storeData} markerClickHandler={this._markerClickHandler} />}  />
-        <Route path='/signup' component={Signup} />
-        <Route path='/login' component={Login} />
+        <Route path='/signup' component={(props) => <Signup props={props} _isAuthHandler={this._isAuthHandler} />} />
+        <Route path='/login' component={(props) => <Login props={props} _isAuthHandler={this._isAuthHandler} /> }/>
         <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} _updateFavorites={this._updateFavorites} />}/>
         <Route path="/myworkshops" component={(props) => <MyWorkshops props={props} workShopRecords={this.state.favorites} />}/>
       </div>
