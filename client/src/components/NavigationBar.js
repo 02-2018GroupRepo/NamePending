@@ -9,7 +9,7 @@ class NavigationBar extends Component{
           <Link to="/">Home</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/login">Login</Link>
-          <Link to="/myworkshop">My Workshops</Link>
+          <Link to="/myworkshops">My Workshops</Link>
         </div>
       </div>
     ) 

@@ -22,7 +22,6 @@ class WorkShop extends Component{
 	
 
 	register(){
-		console.log("Houston we have a problem")
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
@@ -47,9 +46,8 @@ class WorkShop extends Component{
 	}
 
 
-render(){
+render() {
 	const workShop = this.props.workShop; 
-	console.log("here");
 	return(
 		<div>
 			<div className="row">

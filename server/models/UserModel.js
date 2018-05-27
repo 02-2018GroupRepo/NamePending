@@ -4,7 +4,6 @@ class UserModel {
 
     // This is for user signup
     static insertNewUser(email, password, firstName, lastName, phone, address, token) {
-        console.log(email, password)
         return connection.query("INSERT INTO users (email, password, first_name, last_name, phone, address, token) VALUES (?, ?, ?, ?, ?, ?, ?)", [email, password, firstName, lastName, phone, address, token], (err, results) => {
             console.log("here");
             if (err) {console.log(err)}
@@ -60,7 +59,6 @@ class UserModel {
 
         return new Promise((resolve, reject) => {
             connection.query("UPDATE users SET token = ? WHERE email = ?", [token, email], (err, results) => {
-                console.log('Hey')
                 if (err) reject(err);
                 else resolve(results);
             });
@@ -68,6 +66,7 @@ class UserModel {
     }
 
      static insertFavorite(wid, uid) {
+         console.log(wid);
          return new Promise((resolve, reject) => {
              connection.query("INSERT INTO favorites (workshopId, userId) VALUES (?, ?)", [wid, uid], (err, results) => {
                  if (err) reject(err);
@@ -75,6 +74,16 @@ class UserModel {
                 });
             })
         }
+
+     static getFavoritesByUserId(userId) {
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM favorites WHERE userid = ?", [userId], (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+     }   
+
     }
 
 

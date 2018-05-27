@@ -10,6 +10,17 @@ class WorkshopsModel {
                 else resolve(results);
             });
         });
+    }
+    
+    static getWorkshopsByIds(favoritesArr) {
+        let workshopIds = favoritesArr.map(favorite => favorite.workshopId);
+        return new Promise((resolve, reject) => {
+            console.log(workshopIds);
+            connection.query("SELECT * FROM workshops WHERE id IN (?)", [workshopIds], (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
     } 
 }
 

@@ -13,9 +13,10 @@ import WorkShopContainer from './components/WorkshopContainer';
 import MyWorkshop from './components/MyWorkshop';
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Header';
+import MyWorkshops from './components/MyWorkShops';
 const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
-const useLocalData = true;
+const useLocalData = false;
 
 class App extends Component {
 
@@ -24,12 +25,10 @@ class App extends Component {
     this.state = {
       storeData: useLocalData ? storeData 
                               : [],
-      markerSelectionNumber : null,
       workshopData: useLocalData ? workShopData 
-                                 : [],                              
+                                 : [],
+      favorites: []                                                      
       }
-  
-    this._markerClickHandler = this._markerClickHandler.bind(this);  
   }
 
   componentDidMount() {
@@ -62,23 +61,27 @@ class App extends Component {
                    error
                  })
                }
-             )        
-      }    
+             )
+      }
+      axios.post(`${url}/api/favorites`, {
+        token: localStorage.getItem('token')
+    })
+         .then(res => res.data)
+         .then(
+           (favorites) => {
+             this.setState({
+                 favorites: favorites
+              });
+            },
+            (error) => {
+              this.setState({
+                error
+              })
+            }
+          )    
       }
       
-    _markerClickHandler(storeId) {
-        try {
-          document.querySelector('.shadow').style.boxShadow = "";
-          document.querySelector('.shadow').classList.remove('shadow');
-        } catch (e) {
-  
-        }
-        document.querySelector(`.store${storeId}`).scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-        document.querySelector(`.store${storeId}`).classList.add('shadow');
-        document.querySelector(`.store${storeId}`).style.boxShadow = "0 7px 35px -2px rgba(0,0,0,.53)";
-      }    
+      
 	
   render() {
     return (
@@ -88,7 +91,7 @@ class App extends Component {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
-        <Route path = "/myworkshop" component={(props) => <MyWorkshop buttonClass="hiddenButton" />} />
+        <Route path="/myworkshops" component={(props) => <MyWorkshops props={props} workShopRecords={this.state.favorites} />}/>
       </div>
     );
   }
