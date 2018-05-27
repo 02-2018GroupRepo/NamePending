@@ -76,6 +76,7 @@ class UserModel {
         }
 
      static getFavoritesByUserId(userId) {
+         console.log(userId);
         return new Promise((resolve, reject) => {
             connection.query("SELECT * FROM favorites WHERE userid = ?", [userId], (err, results) => {
                 if (err) reject(err);

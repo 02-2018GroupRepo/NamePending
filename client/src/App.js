@@ -79,10 +79,8 @@ class App extends Component {
               })
             }
           )    
-      }
+      }  
       
-      
-	
   render() {
     return (
       <div className="container">
@@ -90,7 +88,7 @@ class App extends Component {
         <Route exact path="/" component={() => <MapContainer storeRecords={this.state.storeData} markerClickHandler={this._markerClickHandler} />}  />
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
-        <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} />}/>
+        <Route path="/stores/:id" component={(props) => <WorkShopContainer workshopRecords={this.state.workshopData} props={props} _updateFavorites={this._updateFavorites} />}/>
         <Route path="/myworkshops" component={(props) => <MyWorkshops props={props} workShopRecords={this.state.favorites} />}/>
       </div>
     );

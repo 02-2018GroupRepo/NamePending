@@ -7,12 +7,10 @@ class WorkShopContainer extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
         this.generateWorkShops = this.generateWorkShops.bind(this);
     }
 
     generateWorkShops(workshopRecords, props) {
-
         let storeNumber = props.props.match.params.id
         if (workshopRecords.length !== 0) {
             return workshopRecords.filter(workshop => Number(workshop.store_id) === Number(storeNumber))
