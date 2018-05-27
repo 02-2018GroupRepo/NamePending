@@ -23,13 +23,10 @@ class App extends Component {
     this.state = {
       storeData: useLocalData ? storeData 
                               : [],
-      markerSelectionNumber : null,
       workshopData: useLocalData ? workShopData 
                                  : [],
-      favorites: []                                                         
+      favorites: []                                                      
       }
-  
-    this._markerClickHandler = this._markerClickHandler.bind(this);  
   }
 
   componentDidMount() {
@@ -82,19 +79,7 @@ class App extends Component {
           )    
       }
       
-    _markerClickHandler(storeId) {
-        try {
-          document.querySelector('.shadow').style.boxShadow = "";
-          document.querySelector('.shadow').classList.remove('shadow');
-        } catch (e) {
-  
-        }
-        document.querySelector(`.store${storeId}`).scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-        document.querySelector(`.store${storeId}`).classList.add('shadow');
-        document.querySelector(`.store${storeId}`).style.boxShadow = "0 7px 35px -2px rgba(0,0,0,.53)";
-      }    
+      
 	
   render() {
     return (
