@@ -71,6 +71,42 @@ router.post('/addToCalendar', (req, res)=>{
   });
 
   });
+
+router.post(`/getFav`, (req, res)=>{
+  const userToken = req.body.token;
+
+  UserModel.getUserByToken(userToken).then(userArray => {
+    const userID = userArray[0].id;
+    if (userArray.length) {
+      UserModel.getFav(userID).then(favorites => {
+        var workshopArray = [];
+        console.log('favorites: ', favorites);
+        const getWorkshop = new Promise((resolve, reject) => {
+          favorites.forEach((element, index) => {
+            console.log('fetching by element id: ', element.workshopId);
+            UserModel.getWorkshops(element.workshopId).then(workshops => {
+              workshopArray.push(workshops[0]);
+              // console.log(workshops[0]);
+              if (index == favorites.length - 1) {
+                console.log('resolving workshops'); 
+                resolve(workshopArray);
+              }
+            });
+          });
+        });
+
+        getWorkshop.then((results) => {
+          console.log('winner!', results); 
+          res.json({
+            msg:"Success",
+            workshopArray
+          });
+        });
+      });
+    }
+  })
+
+})
   
 
 

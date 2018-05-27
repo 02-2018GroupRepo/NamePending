@@ -23,6 +23,28 @@ class UserModel {
         });
 
     } 
+      static getFav(userID) {
+
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM favorites WHERE userId = ?", [userID], (err, results) => {
+                console.log("Promise")
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+
+    } 
+     static getWorkshops(wid) {
+
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM workshop WHERE id = ?", [wid], (err, results) => {
+                console.log("Promise")
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+
+    } 
     // Get user by email
     static getUserByEmail(email) {
 

@@ -1,0 +1,63 @@
+.title123{
+	margin-top:4px;
+	
+	/*margin:5px 5px 5px;*/
+}
+.hdlogo123{
+	/*display:inline;*/
+	/*margin-left: -15px;*/
+	position:relative;
+}
+.logo123{
+/*	display:inline;*/
+	width:60px;
+	margin-right:10px;
+
+}
+.titleText123{
+	/*display:inline-block;
+	position:relative;
+	top:30px;
+	margin-left:10px;*/
+}
+.textStyle{
+	font-size:3.6rem;
+	display: inline;
+	position:relative;
+	vertical-align:middle;
+}
+.navAndSearch123{
+	/*display:inline-block;
+	float:right;*/
+	
+}
+.nav123{
+	/*width:600px;*/
+}
+.orangeBar123{
+}
+.announcement123{
+	text-align: center;
+	vertical-align: middle;
+	background-color:#FE6601;
+	margin: 0px 15px;
+	/*width:100%;*/
+}
+.atext{
+	margin-top:5px;
+	margin-bottom:0px;
+	color:white;
+	font-size:1em;
+}
+
+.navLinks div {
+	float: right;
+} 
+
+.navLinks div a {
+	margin: 10px 0px 0px 20px;
+	text-align: right;
+	color: black;
+	font-size: 18px;
+}
+

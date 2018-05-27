@@ -25,7 +25,7 @@ class WorkShopContainer extends Component {
         return (
             <React.Fragment>
                 {this.generateWorkShops(this.props.workshopRecords, this.props)}
-                </React.Fragment>
+            </React.Fragment>
         )
     }
 }
