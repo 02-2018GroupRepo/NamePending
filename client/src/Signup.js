@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import clientConfig from './config/config';
 
 class Signup extends Component{
 	constructor(props){
@@ -21,7 +22,7 @@ class Signup extends Component{
 
 		const signupRequest = axios({
 			method: "POST",
-			url: "http://localhost:3001/signup",
+			url: `${clientConfig.url}/signup`,
 			data: {
 				email,
 				password,
