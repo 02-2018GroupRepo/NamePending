@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const randToken = require('rand-token');
 const UserModel = require('../models/UserModel');
+const WorkshopsModel = require('../models/WorkshopsModel');
+const twilioClient = require('../twilioConfig');
+const config = require('../config/config');
 
 /* GET home page. */
 router.post('/signup', (req,res)=>{
@@ -53,12 +56,16 @@ router.post('/login', (req, res)=>{
 router.post('/addToCalendar', (req, res)=>{
   const workShopId = req.body.workShopId;
   const userToken = req.body.token;
+  let userPhoneNumber = "+1";
 
   UserModel.getUserByToken(userToken).then(results =>{
     const userID = results[0].id;
+    userPhoneNumber += results[0].phone;
+    console.log(userPhoneNumber);
     if (results.length > 0){
       UserModel.insertFavorite(workShopId, userID)
                .then((results) => {
+                 sendConfirmationText(workShopId, userPhoneNumber);
                  res.json({
                    msg: "WorkShopAdded"
                   })
@@ -107,6 +114,21 @@ router.post('/addToCalendar', (req, res)=>{
 //   })
 
 // })
+
+const sendConfirmationText = (workshopId, phoneNumber) => {
+  
+  WorkshopsModel.getWorkshopById(workshopId)
+                .then(result => {
+                  let message = `Confirmed: ${result[0].name} workshop on ${result[0].date} at ${result[0].time}`;
+                  twilioClient.messages.create({
+                    body: message,
+                    to: phoneNumber,  // Text this number
+                    from: config.twilioPhoneNumber // From a valid Twilio number
+                   }).then(result => console.log(result))
+                     .catch(e => console.log(e));
+                })
+                .catch(e => console.log(e));
+}
   
 
 module.exports = router;
