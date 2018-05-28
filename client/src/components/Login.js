@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import clientConfig from '../config/config';
 
 class Login extends Component{
 
@@ -16,7 +17,7 @@ class Login extends Component{
 
     const loginRequest = axios({
       method: "POST",
-      url: "http://localhost:3001/login",
+      url: `${clientConfig.url}/login`,
       data: {
         email,
         password

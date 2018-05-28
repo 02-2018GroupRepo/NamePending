@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
 import Favorite from './Favorite';
-const url = "http://localhost:3001";
+import clientConfig from '../config/config';
 
 class MyWorkShops extends Component {
     
@@ -15,7 +15,7 @@ class MyWorkShops extends Component {
     }
 
     componentDidMount() {
-        axios.post(`${url}/api/favorites`, {
+        axios.post(`${clientConfig.url}/api/favorites`, {
             token: localStorage.getItem('token')
         })
              .then(res => res.data)
