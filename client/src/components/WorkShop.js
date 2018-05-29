@@ -11,14 +11,20 @@ class WorkShop extends Component{
 		this.state = {
            buttonClass: "",
            registered:"hiddenButton",
-           show: false
+           show: false,
+           hide: false
 		}
+
 		this.register = this.register.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 	}
 
 	handleClose() {
-    	this.setState({ show: false });
+    	this.setState({
+    	 show: false,
+    	 hide: false
+
+    	  });
   	}
 
   	register(){
@@ -42,6 +48,9 @@ class WorkShop extends Component{
 				})
 			} else if(response.data.msg === "Workshop not added."){
 				this.props.history.push('/login')
+				this.setState({
+					hide: true
+				})
 			}
 		})
 	}
@@ -111,6 +120,19 @@ render() {
             <button onClick={this.handleClose}>Close</button>
           </Modal.Footer>
         </Modal>
+
+        <Modal show={this.state.hide} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Please Register</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Link to="/signup">Click here to register for an account.</Link>
+          </Modal.Body>
+          <Modal.Footer>
+            <button onClick={this.handleClose}>Close</button>
+          </Modal.Footer>
+        </Modal>
+
 	    </div>
 		)
 	}
