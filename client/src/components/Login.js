@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import clientConfig from '../config/config';
+import {Link} from 'react-router-dom';
 
 class Login extends Component{
 
@@ -39,13 +40,11 @@ class Login extends Component{
     return(
       <div className="col-sm-offset-3 col-sm-6">
       <div className="signUpText">
-      Login!
-      Login!
-      Login!
-      Login!
-      Login!
-      Login!
-      Login!
+      <p>Login to register for workshops at the Home Depot.</p>
+      <p>If this is your first time here you must sign up first.</p>
+      
+       <Link to="/signup">Click here to Sign Up.</Link> 
+      
       </div>
       <form onSubmit={this.handlelogin}>
 	      <div className="form-group">
