@@ -65,13 +65,9 @@ class WorkShop extends Component{
 		})
 
 		checkButton.then((response)=>{
-			console.log("I'm happy")
 			console.log(response.data.favArray);
 			response.data.favArray.forEach((favorite)=>{
-				// console.log("ID FROM FAVORITES", favorite.workshopId);
-				// console.log("WORKSHOP ID", this.props.workShop.id);
 				if(this.props.workShop.id == favorite.workshopId){
-					// console.log("It's a match");
 					this.setState({
 						buttonClass: "hiddenButton",
 						registered: ""

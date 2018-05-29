@@ -218,9 +218,13 @@ h1 {
   margin: 0;
 }
 
+.mobile-nav {
+  display: none;
+}
+
 /* Mobile version */
 
-@media screen and (max-width: 584px) {
+@media screen and (max-width: 900px) {
   .map-container {
     display: none;
   }
@@ -229,6 +233,37 @@ h1 {
     width: 100%;
     margin-left: 0px;
     margin: 0 auto; 
+  }
+
+  .navAndSearch123 {
+    display: none;
+  }
+
+  p.textStyle {
+    display: none;
+  }
+
+  #navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-nav {
+    display: block;
+    font-size: 45px;
+  }
+
+  .logo123 {
+    margin-left: 20px;
+  }
+
+  .navLinks {
+    display: flex;
+  }
+
+  .navLinks a {
+    display: flex;
   }
 
 }
