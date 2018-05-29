@@ -18,7 +18,7 @@ class SearchBar extends Component{
     return(
         <div className="searchbar-wrapper">
             <div className="searchbar">
-                <input className="searchBar" onChange={this.searchHandler} type="text" placeholder="Zip Code, City, or State"/>
+                <input className="searchBar" onChange={this.searchHandler} type="text" placeholder="Enter a Zip Code or City "/>
                 </div>
                 <div><i className="fas fa-search" style={iconStyle}></i></div>
         </div>

@@ -58,6 +58,12 @@ router.post('/addToCalendar', (req, res)=>{
   const workShopId = req.body.workShopId;
   const userToken = req.body.token;
   let userPhoneNumber = "+1";
+  console.log("HERE");
+  console.log(req.body.token);
+
+  if (req.body.token === null) {
+    res.json({msg: "Workshop not added."});
+  } else {
 
   UserModel.getUserByToken(userToken).then(results =>{
     const userID = results[0].id;
@@ -76,6 +82,8 @@ router.post('/addToCalendar', (req, res)=>{
       })
     }
   });
+}
+
 
   });
 

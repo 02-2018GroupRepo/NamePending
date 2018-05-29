@@ -6,7 +6,7 @@ html, body {
 }
 
 #root {
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .map-container {
@@ -49,7 +49,7 @@ html, body {
 
 .record-col {
   float: left;
-  max-height: 800px;
+  max-height: 450px;
   overflow-y: scroll;
   width: 25%;
   margin-left: -15px;
@@ -208,6 +208,14 @@ h1 {
 .imageThree {
   width:100%;
   max-height: 400px !important;
+}
+
+.footer h1 {
+  margin: 0;
+}
+
+.footer p {
+  margin: 0;
 }
 
 /* Mobile version */

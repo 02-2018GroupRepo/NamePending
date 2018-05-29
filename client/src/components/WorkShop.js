@@ -39,7 +39,7 @@ class WorkShop extends Component{
 		})
 
 		addToCalendar.then((response)=>{
-			
+			console.log(response);
 			if(response.data.msg === "WorkShopAdded"){
 				this.setState({
 					buttonClass: "hiddenButton",
@@ -47,7 +47,6 @@ class WorkShop extends Component{
 					show: true
 				})
 			} else if(response.data.msg === "Workshop not added."){
-				this.props.history.push('/login')
 				this.setState({
 					hide: true
 				})

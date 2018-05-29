@@ -19,9 +19,9 @@ class Header extends Component{
 					<div className="col-md-6 hdlogo123">
 						<Link to="/"><img className="logo123" src="https://corporate.homedepot.com/sites/default/files/styles/thumbnail/public/image_gallery/THD_logo.jpg?itok=FoQ5H-ZQ"/>
 						</Link>
-						<p className="textStyle">The Workshops of HD</p>
+						<p className="textStyle">The Home Depot Workshops</p>
 					</div>
-					<div className="col-md-offset-1 col-md-5 navAndSearch123">
+					<div className="col-md-offset-1 col-md-5 navAndSearch123" style={{marginTop:"18px"}}>
 						<NavigationBar isAuth={this.props.isAuth} _isAuthHandler={this.props._isAuthHandler} />
 					</div>
 				</div>

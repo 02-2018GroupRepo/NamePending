@@ -34,6 +34,7 @@ class MapContainer extends Component {
     
     return (
       <React.Fragment>
+        <p style={{fontSize: "3.0rem", margin: "6px 0 0 0"}}>Store Finder</p>
       <div className="map-container" style={{marginLeft: "-15px", marginRight: "-15px"}}>
         <div id="map">
           <MapComponent storeRecords={this.state.storeData} markerClickHandler={this._markerClickHandler} />
