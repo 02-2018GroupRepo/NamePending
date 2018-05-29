@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 const randToken = require('rand-token');
 const UserModel = require('../models/UserModel');
 const WorkshopsModel = require('../models/WorkshopsModel');
-const twilioClient = require('../twilioConfig');
+// const twilioClient = require('../twilioConfig');
 const config = require('../config/config');
-const enableTwilio = true;
+const enableTwilio = false;
 
 /* GET home page. */
 router.post('/signup', (req,res)=>{
