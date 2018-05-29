@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import clientConfig from '../config/config';
 
 class WorkShop extends Component {
 	constructor(props){
@@ -16,7 +17,7 @@ class WorkShop extends Component {
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
-			url: 'http://localhost:3001/addToCalendar',
+			url: `${clientConfig.url}/addToCalendar`,
 			data:{
 				workShopId,
 				token: localStorage.getItem('token')

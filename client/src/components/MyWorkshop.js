@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import WorkShop from './WorkShop';
+import clientConfig from '../config/config';
 
 class MyWorkshop extends Component {
 
@@ -15,7 +16,7 @@ class MyWorkshop extends Component {
     componentDidMount() {
         axios({
                 method: 'POST',
-                url: 'http://localhost:3001/getFav',
+                url: `${clientConfig.url}/getFav`,
                 data: {
                     token: localStorage.getItem('token')
                 }

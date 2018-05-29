@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Route, Link} from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import Signup from './Signup';
 import axios from 'axios';
 import Login from './components/Login';
@@ -14,8 +14,8 @@ import MyWorkshop from './components/MyWorkshop';
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Header';
 import MyWorkshops from './components/MyWorkShops';
+import clientConfig from './config/config';
 import CarouselComponent from './components/CarouselComponent';
-const url = "http://localhost:3001";
 /* Set to true if using data from local json file  */
 const useLocalData = false;
 
@@ -35,7 +35,7 @@ class App extends Component {
 
   componentDidMount() {
     if (!useLocalData) {
-      axios.get(`${url}/api/stores`)
+      axios.get(`${clientConfig.url}/api/stores`)
            .then(res => res.data)
            .then(
              (storeRecords) => {
@@ -50,7 +50,7 @@ class App extends Component {
               }
             )
 
-            axios.get(`${url}/api/workshops`)
+            axios.get(`${clientConfig.url}/api/workshops`)
             .then(res => res.data)
             .then(
               (workshopRecords) => {
@@ -65,7 +65,7 @@ class App extends Component {
                }
              )
       }
-      axios.post(`${url}/api/favorites`, {
+      axios.post(`${clientConfig.url}/api/favorites`, {
         token: localStorage.getItem('token')
     })
          .then(res => res.data)

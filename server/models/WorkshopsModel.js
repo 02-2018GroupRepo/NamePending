@@ -21,6 +21,15 @@ class WorkshopsModel {
                 else resolve(results);
             });
         });
+    }
+    
+    static getWorkshopById(workshopId) {
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM workshops WHERE id = ?", [workshopId], (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
     } 
 }
 

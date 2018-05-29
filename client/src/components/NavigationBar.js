@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-const url = 'http://localhost:3001';
+import clientConfig from '../config/config';
 
 class NavigationBar extends Component{
 
@@ -14,7 +14,7 @@ class NavigationBar extends Component{
 
   componentDidMount() {
 
-    axios.post(`${url}/users/validate`, {
+    axios.post(`${clientConfig.url}/users/validate`, {
       token: localStorage.getItem('token')
     })
       .then(res => res.data)
