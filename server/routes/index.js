@@ -6,6 +6,7 @@ const UserModel = require('../models/UserModel');
 const WorkshopsModel = require('../models/WorkshopsModel');
 const twilioClient = require('../twilioConfig');
 const config = require('../config/config');
+const enableTwilio = true;
 
 /* GET home page. */
 router.post('/signup', (req,res)=>{
@@ -61,7 +62,6 @@ router.post('/addToCalendar', (req, res)=>{
   UserModel.getUserByToken(userToken).then(results =>{
     const userID = results[0].id;
     userPhoneNumber += results[0].phone;
-    console.log(userPhoneNumber);
     if (results.length > 0){
       UserModel.insertFavorite(workShopId, userID)
                .then((results) => {
@@ -79,53 +79,18 @@ router.post('/addToCalendar', (req, res)=>{
 
   });
 
-// router.post(`/getFav`, (req, res)=>{
-//   const userToken = req.body.token;
-
-//   UserModel.getUserByToken(userToken).then(userArray => {
-//     const userID = userArray[0].id;
-//     if (userArray.length) {
-//       UserModel.getFav(userID).then(favorites => {
-//         var workshopArray = [];
-//         console.log('favorites: ', favorites);
-//         const getWorkshop = new Promise((resolve, reject) => {
-//           favorites.forEach((element, index) => {
-//             console.log('fetching by element id: ', element.workshopId);
-//             UserModel.getWorkshops(element.workshopId).then(workshops => {
-//               workshopArray.push(workshops[0]);
-//               // console.log(workshops[0]);
-//               if (index == favorites.length - 1) {
-//                 console.log('resolving workshops'); 
-//                 resolve(workshopArray);
-//               }
-//             });
-//           });
-//         });
-
-//         getWorkshop.then((results) => {
-//           console.log('winner!', results); 
-//           res.json({
-//             msg:"Success",
-//             workshopArray
-//           });
-//         });
-//       });
-//     }
-//   })
-
-// })
-
 const sendConfirmationText = (workshopId, phoneNumber) => {
-  
   WorkshopsModel.getWorkshopById(workshopId)
                 .then(result => {
-                  let message = `Confirmed: ${result[0].name} workshop on ${result[0].date} at ${result[0].time}`;
-                  twilioClient.messages.create({
-                    body: message,
-                    to: phoneNumber,  // Text this number
-                    from: config.twilioPhoneNumber // From a valid Twilio number
-                   }).then(result => console.log(result))
-                     .catch(e => console.log(e));
+                  if (enableTwilio) {
+                    let message = `Confirmed: ${result[0].name} workshop on ${result[0].date} at ${result[0].time}`;
+                    twilioClient.messages.create({
+                      body: message,
+                      to: phoneNumber,  // Text this number
+                      from: config.twilioPhoneNumber // From a valid Twilio number
+                    }).then(result => console.log(result))
+                      .catch(e => console.log(e));
+                  }
                 })
                 .catch(e => console.log(e));
 }
