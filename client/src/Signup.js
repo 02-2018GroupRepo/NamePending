@@ -47,11 +47,8 @@ class Signup extends Component{
 		return(
 			<div className="col-sm-offset-3 col-sm-6">
 			<div className="signUpText">
-				Sign up for a HDW account so you can register for a workshop today!
-				Sign up for a HDW account so you can register for a workshop today!
-				Sign up for a HDW account so you can register for a workshop today!
-				Sign up for a HDW account so you can register for a workshop today!
-				Sign up for a HDW account so you can register for a workshop today!
+				<p>Sign up for a free account to register for any workshop The Home Depot has to offer. <br />
+				*** All fields are required.</p>
 			</div>
 			<form onSubmit={this.handleSignup}>
 				<div className = "form-group">
