@@ -79,6 +79,23 @@ router.post('/addToCalendar', (req, res)=>{
 
   });
 
+  router.post('/checkButton', (req, res)=>{
+    const userToken = req.body.token;
+    console.log("I'm checking button")
+    UserModel.getUserByToken(userToken).then(userArray => {
+        const userID = userArray[0].id;
+        if (userArray.length) {
+          UserModel.getFav(userID).then(favorites => {
+            res.json({
+            favArray: favorites
+            })
+          })
+        }
+    })
+  })  
+
+
+
 const sendConfirmationText = (workshopId, phoneNumber) => {
   WorkshopsModel.getWorkshopById(workshopId)
                 .then(result => {

@@ -82,7 +82,30 @@ class UserModel {
                 else resolve(results);
             });
         });
-     }   
+     }
+     
+     static getUserByToken(token) {
+
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM users WHERE token = ?", [token], (err, results) => {
+                console.log("Promise")
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+
+    } 
+      
+    static getFav(userID) {
+        
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT * FROM favorites WHERE userId = ?", [userID], (err, results) => {
+                if (err) reject(err);
+                else resolve(results);
+            });
+        });
+
+    } 
 
     }
 

@@ -41,16 +41,16 @@ render() {
     const workShop = this.props.workShop; 
     console.log(workShop)
 	return(
-       <div className ="workshop-container">
-           <div className ="workshop-header">{workShop.name}</div>
-              <div className="workshop-details">
-                <div className="workshop-col-8">
-                <div className="workshop-img">
+       <div className ="row">
+           <div className ="col-sm-12 workshop-header">{workShop.name}</div>
+              <div className="row">
+                <div className="col-sm-4 photoWS">
                     <img src = {workShop.photo_url} />
                     </div> 
+					<div className="col-sm-6 description">
                         <p>{workShop.description}</p>
-                </div>
-                   <div className="workshop-col-4">
+						</div>
+                   <div className="col-sm-2">
                             <div className="favorite-date">{workShop.date}</div>
                             <div className="favorite-time">{workShop.time}</div>
                             <div className="favorite-time">{workShop.address}</div>
@@ -61,6 +61,11 @@ render() {
 
 
 		)
+// <div><div class="row"><div class="col-sm-12 titleWS"><h2>Installing Tile Backsplash</h2></div></div><div class="row"><div class="col-sm-4 photoWS"><img src="https://www.homedepot.com/workshops/image/a15d9100-44a0-11e8-820f-f59d86080964/DIY_17_Installing_Tile_Blacksplash_PSD.jpg"></div><div class="col-sm-6 description"><p>Rethink the most visited rooms in your home with a backsplash install. Our Store Associates will cover trending and classic tile options, demonstrate how to prepare your surface and instruct you how to cut your project time down by mounting tiles with SimpleMat adhesive. SimpleMat adhesive allows for immediate grouting, turning your backsplash installation into a one day project.</p></div><div class="col-sm-2 timeAndButton"><h4>Saturday, Jun 2, 2018</h4><h5>10:00 AM - 11:30 AM</h5><button data-target=".bs-example-modal-sm" class="btn btn-primary registerBtn" id="">Register</button></div></div><hr></div>
+
+
+
+
 }
 
 }

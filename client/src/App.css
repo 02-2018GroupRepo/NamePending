@@ -84,7 +84,7 @@ html, body {
 
 .workshop-header {
   font-size: 1.5em;
-  padding-left: 25px;
+  margin-left: -15px;
   padding-bottom: 5px;
   padding-top: 15px;
   font-weight: bold;

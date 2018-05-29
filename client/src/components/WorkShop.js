@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './workshop.css';
 import {Modal} from 'react-bootstrap';
-import clientConfig from '../config/config';
 
 
 class WorkShop extends Component{
@@ -11,6 +10,7 @@ class WorkShop extends Component{
 		super(props);
 		this.state = {
            buttonClass: "",
+           registered:"hiddenButton",
            show: false
 		}
 		this.register = this.register.bind(this);
@@ -20,13 +20,12 @@ class WorkShop extends Component{
 	handleClose() {
     	this.setState({ show: false });
   	}
-	
 
-	register(){
+  	register(){
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
-			url: `${clientConfig.url}/addToCalendar`,
+			url: `http://localhost:3001/addToCalendar`,
 			data:{
 				workShopId,
 				token: localStorage.getItem('token')
@@ -38,11 +37,39 @@ class WorkShop extends Component{
 			if(response.data.msg === "WorkShopAdded"){
 				this.setState({
 					buttonClass: "hiddenButton",
+					registered: "",
 					show: true
 				})
 			} else if(response.data.msg === "Workshop not added."){
 				this.props.history.push('/login')
 			}
+		})
+	}
+
+	componentDidMount(){
+		console.log("Im checking button status")
+		const checkButton = axios({
+			method: 'POST',
+			url:`http://localhost:3001/checkButton`,
+			data:{
+			token: localStorage.getItem('token')
+		}
+		})
+
+		checkButton.then((response)=>{
+			console.log("I'm happy")
+			console.log(response.data.favArray);
+			response.data.favArray.forEach((favorite)=>{
+				// console.log("ID FROM FAVORITES", favorite.workshopId);
+				// console.log("WORKSHOP ID", this.props.workShop.id);
+				if(this.props.workShop.id == favorite.workshopId){
+					// console.log("It's a match");
+					this.setState({
+						buttonClass: "hiddenButton",
+						registered: ""
+					})
+				}
+			})
 		})
 	}
 
@@ -66,7 +93,10 @@ render() {
 	            <div className="col-sm-2 timeAndButton">
 	                <h4>{workShop.date}</h4>
 	                <h5>{workShop.time}</h5>
+	                
 	                <button data-toggle={this.state.modal} data-target=".bs-example-modal-sm" className="btn btn-primary registerBtn"  id={this.state.buttonClass} onClick={this.register}>Register</button>
+	                <button className="btn btn-success registerBtn disabled"  id={this.state.registered}>Enrolled</button>
+	            	
 	            </div>
 	        </div>
 	        <hr/>
