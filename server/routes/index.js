@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 const randToken = require('rand-token');
 const UserModel = require('../models/UserModel');
 const WorkshopsModel = require('../models/WorkshopsModel');
-// const twilioClient = require('../twilioConfig');
+const twilioClient = require('../twilioConfig');
 const config = require('../config/config');
-const enableTwilio = false;
+const enableTwilio = true;
 
 /* GET home page. */
 router.post('/signup', (req,res)=>{
@@ -58,8 +58,6 @@ router.post('/addToCalendar', (req, res)=>{
   const workShopId = req.body.workShopId;
   const userToken = req.body.token;
   let userPhoneNumber = "+1";
-  console.log("HERE");
-  console.log(req.body.token);
 
   if (req.body.token === null) {
     res.json({msg: "Workshop not added."});

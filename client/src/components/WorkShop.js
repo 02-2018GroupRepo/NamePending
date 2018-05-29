@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './workshop.css';
 import {Modal} from 'react-bootstrap';
+import clientConfig from '../config/config';
 
 
 class WorkShop extends Component{
@@ -31,7 +32,7 @@ class WorkShop extends Component{
 		const workShopId = this.props.workShop.id;
 		const addToCalendar = axios({
 			method: 'POST',
-			url: `http://localhost:3001/addToCalendar`,
+			url: `${clientConfig.url}/addToCalendar`,
 			data:{
 				workShopId,
 				token: localStorage.getItem('token')
@@ -58,7 +59,7 @@ class WorkShop extends Component{
 		console.log("Im checking button status")
 		const checkButton = axios({
 			method: 'POST',
-			url:`http://localhost:3001/checkButton`,
+			url:`${clientConfig.url}/checkButton`,
 			data:{
 			token: localStorage.getItem('token')
 		}
